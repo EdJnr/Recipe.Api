@@ -5,6 +5,7 @@ using Recipe.Application.Interfaces.Services;
 using Recipe.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,11 @@ namespace Recipe.Application.Services
 
         public async Task<int> AddComment(CreateCommentDto dto)
         {
+            if (await _unitOfWork.Recipes.Get(dto.RecipeId) == null)
+            {
+                throw new ValidationException($"No Recipe Matches the Id {dto.RecipeId}");
+            }
+
             var model = _mapper.Map<CommentsEntity>(dto);
 
             _unitOfWork.Comments.Create(model);

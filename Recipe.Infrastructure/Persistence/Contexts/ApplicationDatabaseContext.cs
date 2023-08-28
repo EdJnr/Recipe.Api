@@ -29,6 +29,20 @@ namespace Recipe.Infrastructure.Persistence.Contexts
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<IngredientsEntity>()
+                .HasOne(e => e.Recipe)
+                .WithMany(e => e.Ingredients)
+                .HasForeignKey(e => e.RecipeId);
+
+            modelBuilder.Entity<CommentsEntity>()
+                .HasOne(e => e.Recipe)
+                .WithMany(r => r.Comments)
+                .HasForeignKey(e => e.RecipeId);
+
+            modelBuilder.Entity<RecipesEntity>()
+                .HasOne(r => r.DifficultyLevel)
+                .WithMany()
+                .HasForeignKey(r => r.DifficultyLevelId);
         }
 
 

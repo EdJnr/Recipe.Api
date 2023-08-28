@@ -3,6 +3,7 @@ using Recipe.Application.Dtos.Ingredients;
 using Recipe.Application.Interfaces;
 using Recipe.Application.Interfaces.Services;
 using Recipe.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Recipe.Application.Services
 {
@@ -19,6 +20,11 @@ namespace Recipe.Application.Services
 
         public async Task<int> AddIngredient(CreateIngredientDto dto)
         {
+            if (await _unitOfWork.Recipes.Get(dto.RecipeId) == null)
+            {
+                throw new ValidationException($"No Recipe Matches the Id {dto.RecipeId}");
+            }
+
             var model = _mapper.Map<IngredientsEntity>(dto);
 
             _unitOfWork.Ingredients.Create(model);

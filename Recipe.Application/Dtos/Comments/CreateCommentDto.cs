@@ -10,6 +10,10 @@ namespace Recipe.Application.Dtos.Comments
     public class CreateCommentDto
     {
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Recipe Id must be greater than 0")]
+        public int RecipeId { get; set; }
+
+        [Required]
         public string? Name { get; set; }
 
         [Required]

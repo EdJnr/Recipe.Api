@@ -12,6 +12,10 @@ namespace Recipe.Application
 
             services.AddScoped<IComments, CommentsService>();
 
+            services.AddScoped<IIngredients, IngredientsService>();
+
+            services.AddScoped<IRecipe, RecipesService>();
+
             return services;
         }
     }

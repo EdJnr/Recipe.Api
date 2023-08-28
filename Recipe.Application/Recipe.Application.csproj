@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Recipe.Domain\Recipe.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dtos\Todos\" />
-  </ItemGroup>
-
 </Project>

@@ -88,7 +88,8 @@ namespace Recipe.Infrastructure.Persistence.Repositories
 
             if (model != null)
             {
-                _db.Update(model);
+                _dbContext.Entry(model).State = EntityState.Detached;
+                _db.Update(entity);
             }
         }
     }

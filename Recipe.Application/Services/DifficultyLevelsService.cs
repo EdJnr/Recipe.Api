@@ -47,8 +47,8 @@ namespace Recipe.Application.Services
             :
             await _unitOfWork.DifficultyLevels.Query
             (
-                filter:(e)=> e.Name.ToLower().Trim() == search.ToLower().Trim()
-            );
+                filter:(e)=> e.Name.ToLower().Trim().Contains(search.ToLower().Trim())
+            );;
 
             var results = _mapper.Map<IReadOnlyList<GetDifficultyLevelDto>>(fromDb);
             return results;

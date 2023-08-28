@@ -9,6 +9,9 @@ namespace Recipe.Application
         public static IServiceCollection ApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IDifficultyLevels, DifficultyLevelsService>();
+
+            services.AddScoped<IComments, CommentsService>();
+
             return services;
         }
     }
